@@ -1,0 +1,66 @@
+{
+  "explorer.icon.enableNerdfont": true,
+  "explorer.width": 30,
+  "explorer.file.reveal.auto": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "v": "open:vsplit"
+  },
+
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmPath": "elm",
+        "elmFormatPath": "elm-format",
+        "elmTestPath": "elm-test",
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  },
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/docker/compose/master/compose/config/config_schema_v2.0.json": "**/docker-compose*.yml"
+  },
+
+  "git.enableGutters": true,
+  "prettier.disableLanguages": ["vue", "html"],
+
+  "tsserver.maxTsServerMemory": 3000,
+
+  "typescript.inlayHints.variableTypes.enabled": false,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+  "typescript.inlayHints.parameterTypes.enabled": false,
+  "typescript.inlayHints.enumMemberValues.enabled": false,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": false,
+
+  "javascript.inlayHints.variableTypes.enabled": false,
+  "javascript.inlayHints.parameterNames.enabled": "none",
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+
+  "javascript.suggest.names": false,
+  "javascript.suggestionActions.enabled": false,
+  "javascript.suggest.completeFunctionCalls": false,
+  "javascript.suggest.autoImports": false,
+  "javascript.suggest.classMemberSnippets.enabled": false,
+  "javascript.suggest.includeCompletionsForImportStatements": false,
+  "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
+  "javascript.suggest.paths": false,
+  "javascript.suggest.jsdoc.generateReturns": false,
+  "javascript.suggest.enabled": false,
+
+  "stylua.styluaPath": "/home/arshad/.cargo/bin/stylua",
+
+  "Lua.diagnostics.globals": ["vim", "awesome","client"],
+  "Lua.workspace.library": [
+    "/usr/share/awesome/lib",
+    "/usr/share/nvim/runtime/lua/"
+  ]
+}
