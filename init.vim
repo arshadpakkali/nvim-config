@@ -1,9 +1,8 @@
 :let mapleader = " "
 set nocompatible
 
-
-source ~/.config/nvim/plugins.vim
-source ~/.config/nvim/lua/whichkey.lua
+lua require('plugins') 
+lua require('whichkey')
 
 "---------Configs 
 
