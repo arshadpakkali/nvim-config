@@ -5,6 +5,8 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 noremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."<Cr>"
 noremap <leader>sp :Rg<Cr>
 noremap <leader>b :Buffers<Cr>
+
+noremap <leader>rr :so ~/.config/nvim/init.vim<Cr>
 "
 "
 "
