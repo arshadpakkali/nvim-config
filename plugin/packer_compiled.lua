@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/auto-pairs",
     url = "https://github.com/jiangmiao/auto-pairs"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/arshad/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["coc.nvim"] = {
     loaded = true,
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/coc.nvim",
@@ -124,10 +129,27 @@ _G.packer_plugins = {
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/lush.nvim",
     url = "https://github.com/rktjmp/lush.nvim"
   },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/arshad/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\n¥\2\0\0\a\0\15\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\n\0005\3\4\0005\4\a\0004\5\3\0005\6\5\0>\6\1\0055\6\6\0>\6\2\5=\5\b\4=\4\t\3=\3\v\0025\3\f\0004\4\0\0=\4\r\3=\3\14\2B\0\2\1K\0\1\0\24update_focused_file\16ignore_list\1\0\2\venable\2\16update_root\1\tview\1\0\0\rmappings\tlist\1\0\0\1\0\2\vaction\15close_node\bkey\6h\1\0\2\vaction\tedit\bkey\6l\1\0\1\nwidth\3#\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0" },
+    loaded = true,
+    path = "/home/arshad/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua",
+    wants = { "nvim-web-devicons" }
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/arshad/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   orgmode = {
     loaded = true,
@@ -209,11 +231,6 @@ _G.packer_plugins = {
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/vimspector",
     url = "https://github.com/puremourning/vimspector"
   },
-  ["vista.vim"] = {
-    loaded = true,
-    path = "/home/arshad/.local/share/nvim/site/pack/packer/start/vista.vim",
-    url = "https://github.com/liuchengxu/vista.vim"
-  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/arshad/.local/share/nvim/site/pack/packer/start/which-key.nvim",
@@ -222,6 +239,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n¥\2\0\0\a\0\15\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\n\0005\3\4\0005\4\a\0004\5\3\0005\6\5\0>\6\1\0055\6\6\0>\6\2\5=\5\b\4=\4\t\3=\3\v\0025\3\f\0004\4\0\0=\4\r\3=\3\14\2B\0\2\1K\0\1\0\24update_focused_file\16ignore_list\1\0\2\venable\2\16update_root\1\tview\1\0\0\rmappings\tlist\1\0\0\1\0\2\vaction\15close_node\bkey\6h\1\0\2\vaction\tedit\bkey\6l\1\0\1\nwidth\3#\14nvim-tree\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 if should_profile then save_profiles() end
 
 end)

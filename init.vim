@@ -6,6 +6,7 @@ lua require('whichkey')
 
 "---------Configs 
 
+set timeoutlen=200
 set relativenumber
 set smartindent 
 set incsearch
@@ -15,7 +16,7 @@ set undodir=~/.config/nvim/undoDir
 set undofile
 set smartcase
 set laststatus=2
-set nu
+set number
 set encoding=UTF-8
 set wildmenu
 set colorcolumn =80
@@ -35,20 +36,13 @@ colorscheme gruvbox
 set background=dark 
 set lazyredraw
 
-"-- FOLDING --  
-set foldmethod=syntax "syntax highlighting items specify folds  
-" set foldcolumn=1 "defines 1 col at window left, to indicate folding  
-let javaScript_fold=1 "activate folding by JS syntax  
-set foldlevelstart=99 "start file with all folds opened
-
-
 let g:indentLine_char = '┊'
 
 " fix cursor hold plugin config
 let g:cursorhold_updatetime = 100
 
 " open Coc-Explorer with ctrl + n
-nmap <C-n> :CocCommand explorer<CR>
+nmap <C-n> :NvimTreeToggle<CR>
 
 " ---- Coc completion
 source ~/.config/nvim/coc.vim
@@ -63,7 +57,6 @@ command! -nargs=0 Eslint :CocCommand eslint.executeAutofix
 " :let maplocalleader = "."
 
 inoremap jj <Esc>
-tnoremap jj <c-\><c-n>
 
 
 " copy/yank to clip board
@@ -109,11 +102,8 @@ nnoremap <S-w> :wa<CR>
 
 
 noremap <leader>f :Format<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
 
 
-nnoremap <leader>cl :Vista!!<CR>
-nnoremap <leader>cL :Vista coc<CR>
 
 nmap <leader>tc :ColorHighlight<CR>
 
@@ -186,8 +176,6 @@ endfunction
 
 
 noremap <leader>gb :call <SID>ToggleBlame()<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
 nnoremap <leader>gg :call<SID>ToggleFugitive()<CR>
 
 

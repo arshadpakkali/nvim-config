@@ -4,6 +4,6 @@
         "vim",
         "awesome",
         "client",
-        "use"
+        "packer_bootstrap"
     ]
 }
