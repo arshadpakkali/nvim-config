@@ -7,18 +7,16 @@ lua require('whichkey')
 "---------Configs 
 
 set timeoutlen=200
+set number
 set relativenumber
 set smartindent 
 set incsearch
+set smartcase
 set nobackup
 set noswapfile 
 set undodir=~/.config/nvim/undoDir
 set undofile
-set smartcase
-set laststatus=2
-set number
 set encoding=UTF-8
-set wildmenu
 set colorcolumn =80
 set expandtab
 set tabstop=2 softtabstop=2
