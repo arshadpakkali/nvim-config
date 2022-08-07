@@ -1,24 +1,34 @@
 local fn = vim.fn
 
+-- Automatically install packer on XDG_DATA_HOME/nvim
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP =
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
 end
 
+-- do PackerSync on FileChange
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile> | PackerSync
+augroup end
 ]])
 
 local status_ok, packer = pcall(require, "packer")
-
 if not status_ok then
 	return
 end
 
+-- Have packer use a popup window
 packer.init({
 	display = {
 		open_fn = function()
@@ -29,37 +39,37 @@ packer.init({
 
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
-	use("sheerun/vim-polyglot")
-	use("rktjmp/lush.nvim")
-	use("npxbr/gruvbox.nvim")
-	use("vim-airline/vim-airline")
-	use("vim-airline/vim-airline-themes")
-	use({ "junegunn/fzf", run = "./install --bin" })
+	use("lewis6991/impatient.nvim")
 	use("junegunn/fzf.vim")
-	use("tpope/vim-fugitive")
-	use({ "neoclide/coc.nvim", branch = "release" })
-	use("antoinemadec/FixCursorHold.nvim")
 	use("unblevable/quick-scope")
-	use("tpope/vim-commentary")
-	use("tpope/vim-surround")
-	use("jiangmiao/auto-pairs")
-	use("chrisbra/Colorizer")
-	use("honza/vim-snippets")
-	use("Yggdroot/indentLine")
-	use("mattn/emmet-vim")
-	use("romainl/vim-cool")
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("voldikss/vim-floaterm")
-	use("SirVer/ultisnips")
-	use("mlaursen/vim-react-snippets")
-	use("puremourning/vimspector")
-	use("nvim-lua/plenary.nvim")
-	use("folke/which-key.nvim")
-	use("nvim-orgmode/orgmode")
-	use("mboughaba/i3config.vim")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("lualine").setup({})
+		end,
+	})
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("whichkey-conf")
+		end,
+	})
 
-	use("neovim/nvim-lspconfig")
-	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({
+		"ellisonleao/gruvbox.nvim",
+		config = function()
+			require("gruvbox").setup({ contrast = "hard" })
+			vim.cmd("colorscheme gruvbox")
+		end,
+	})
+
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = "kyazdani42/nvim-web-devicons",
@@ -79,10 +89,100 @@ return packer.startup(function(use)
 				update_focused_file = {
 					enable = true,
 					update_root = false,
-					ignore_list = {},
 				},
 			})
 		end,
+	})
+	use({
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip_conf")
+		end,
+	})
+	use({
+		"neovim/nvim-lspconfig",
+		requires = {
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"saadparwaiz1/cmp_luasnip",
+			"jose-elias-alvarez/null-ls.nvim",
+			"ray-x/lsp_signature.nvim",
+			"b0o/schemastore.nvim",
+		},
+		config = function()
+			require("lsp")
+			require("lsp_servers")
+		end,
+	})
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	})
+
+	use({
+		"onsails/lspkind.nvim",
+		config = function()
+			require("lspkind").init()
+		end,
+	})
+
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.0",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			local telescopeActions = require("telescope.actions")
+
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<Esc>"] = telescopeActions.close,
+							["<C-u>"] = false,
+						},
+					},
+				},
+			})
+		end,
+	})
+
+	use("tpope/vim-surround")
+	use("tpope/vim-commentary")
+	use("tpope/vim-fugitive")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "c", "lua", "typescript", "javascript", "go" },
+				sync_install = false,
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+			})
+		end,
+	})
+
+	use({
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup()
+		end,
+	})
+
+	use({
+		"puremourning/vimspector",
 	})
 
 	if PACKER_BOOTSTRAP then
